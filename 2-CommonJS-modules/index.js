@@ -1,3 +1,3 @@
-const sum = require("./module.js");
+const sum = require("./module");
 
-sum(10, 11);
+sum(2, 2);
