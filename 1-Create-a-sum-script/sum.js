@@ -4,4 +4,4 @@ function sum(...numbers) {
   console.log(`The sum of ${addends.join(" + ")} = ${sum}`);
 }
 
-result = sum(5, 6);
+sum(5, 6);
