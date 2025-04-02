@@ -21,4 +21,4 @@ luckyDraw("Joe")
   .then(() => luckyDraw("Sabrina"))
   .then((result) => console.log(result))
   .catch((error) => console.error(error.message))
-  .finally(() => console.log("extraction finished"));
+  .finally(() => console.log("lucky draw finished"));
