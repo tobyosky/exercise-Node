@@ -15,7 +15,7 @@ let planets = [
     },
 ];
 app.get("/", (req, res) => {
-    res.status(200).json({ msg: "Hello World!" });
+    res.status(200).json(planets);
 });
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
