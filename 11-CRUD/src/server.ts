@@ -63,11 +63,9 @@ app.delete("/api/planets/:id", (req, res) => {
   const deletedPlanet = planets.find((planet) => planet.id === Number(id));
   planets = planets.filter((planet) => planet.id !== Number(id));
 
-  res
-    .status(200)
-    .json({
-      msg: `The planet ${deletedPlanet?.name} with id ${id} deleted successfully`,
-    });
+  res.status(200).json({
+    msg: `The planet ${deletedPlanet?.name} with id ${id} deleted successfully`,
+  });
 });
 
 app.listen(port, () => {
