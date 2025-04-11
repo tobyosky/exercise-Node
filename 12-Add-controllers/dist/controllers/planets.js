@@ -1,3 +1,4 @@
+import Joi from "joi";
 let planets = [
     {
         id: 1,
@@ -13,12 +14,29 @@ const getAll = (req, res) => {
 };
 const getOneById = (req, res) => {
     const { id } = req.params;
+    if (isNaN(Number(id))) {
+        res.status(400).json({ error: "id is not a number" });
+    }
     const planet = planets.find((planet) => planet.id === Number(id));
-    res.status(200).json(planet);
+    console.log(planet);
+    if (planet) {
+        res.status(200).json(planet);
+    }
+    else {
+        res.status(404).json({ error: "Planet not found" });
+    }
 };
+const planetSchema = Joi.object({
+    id: Joi.number().integer().required(),
+    name: Joi.string().required(),
+});
 const create = (req, res) => {
     const { id, name } = req.body;
     const newPlanet = { id, name };
+    const validateNewPlanet = planetSchema.validate(newPlanet);
+    if (validateNewPlanet.error) {
+        res.status(400).json({ error: validateNewPlanet.error.details[0].message });
+    }
     planets = [...planets, newPlanet];
     res.status(201).json({
         msg: `planet ${newPlanet.name} whit id ${newPlanet.id} created successfully`,
